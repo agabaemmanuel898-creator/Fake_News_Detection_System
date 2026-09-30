@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fake News Detection System</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="header">
+
+   <div class="logo">
+    Fake News Detector
+    <span class="version">v1.0</span>
+
+    <div class="logo-subtitle">
+        Machine Learning-Based News Classification
+    </div>
+</div>
+
+    <div class="header-right">
+
+       <div class="status">
+    ● Model Ready
+       </div>
+
+        <button id="themeButton">
+            🌙 Dark
+        </button>
+
+    </div>
+
+</header>
+<nav class="navigation">
+
+    <a href="#howItWorks">How It Works</a>
+
+    <a href="#modelInfo">Model</a>
+
+    <a href="#performance">Performance</a>
+
+    <a href="#technology">Technology</a>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>
+        Fake News Detection System
+    </h1>
+
+    <p class="description">
+        Enter a news article below to determine whether it is likely to be real or fake.
+    </p>
+
+
+    <textarea
+        id="newsText"
+        maxlength="5000"
+        placeholder="Enter or paste a news article here..."
+    ></textarea>
+
+
+    <p id="charCount">
+        Characters: 0 | Minimum: 30
+    </p>
+
+
+    <button id="checkButton">
+        Check News
+    </button>
+
+    <button id="clearButton">
+        Clear
+    </button>
+
+
+    <!-- Prediction Result -->
+
+    <div id="resultBox">
+
+        <p class="result-label">
+            Prediction
+        </p>
+
+        <h2 id="prediction"></h2>
+
+
+        <p class="confidence-label">
+            Confidence
+        </p>
+
+        <p id="confidence"></p>
+
+
+        <div id="confidenceBarContainer">
+
+            <div id="confidenceBar"></div>
+
+        </div>
+
+
+        <p id="explanation"></p>
+
+
+        <p id="modelNote">
+            Note: This prediction is based on patterns learned from
+            the training data. It does not independently verify the
+            factual accuracy of the news.
+        </p>
+
+    </div>
+    <div id="onlineResults" class="online-results">
+
+    <h3>Online News Evidence</h3>
+
+    <p id="onlineStatus">
+        Searching for related news reports...
+    </p>
+
+    <div id="newsSources"></div>
+
+</div>
+
+</div>
+
+
+<!-- How It Works -->
+
+<section class="how-it-works" id="howItWorks">
+
+    <h2>
+        How It Works
+    </h2>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <h3>
+                1. Enter News
+            </h3>
+
+            <p>
+                Enter or paste a news article into the text box.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <h3>
+                2. Analyze
+            </h3>
+
+            <p>
+                The system processes the article using TF-IDF and machine learning.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <h3>
+                3. Get Result
+            </h3>
+
+            <p>
+                The system predicts whether the article is likely to be real or fake.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Model Information -->
+
+<section class="model-info" id="modelInfo">
+
+    <h2>
+        Model Information
+    </h2>
+
+
+    <div class="model-details">
+
+        <div class="model-item">
+
+            <h3>
+                Algorithm
+            </h3>
+
+            <p>
+                Logistic Regression
+            </p>
+
+        </div>
+
+
+        <div class="model-item">
+
+            <h3>
+                Text Processing
+            </h3>
+
+            <p>
+                TF-IDF Vectorization
+            </p>
+
+        </div>
+
+
+        <div class="model-item">
+
+            <h3>
+                Test Accuracy
+            </h3>
+
+            <p>
+                98.5%
+            </p>
+
+        </div>
+
+
+        <div class="model-item">
+
+            <h3>
+                Articles Tested
+            </h3>
+
+            <p>
+                200
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Model Performance -->
+
+<section class="model-performance" id="Performance">
+
+    <h2>
+        Model Performance
+    </h2>
+
+
+    <div class="performance-details">
+
+        <div class="performance-item">
+
+            <h3>
+                Accuracy
+            </h3>
+
+            <p>
+                98.5%
+            </p>
+
+        </div>
+
+
+        <div class="performance-item">
+
+            <h3>
+                Fake News Precision
+            </h3>
+
+            <p>
+                98%
+            </p>
+
+        </div>
+
+
+        <div class="performance-item">
+
+            <h3>
+                Fake News Recall
+            </h3>
+
+            <p>
+                99%
+            </p>
+
+        </div>
+
+
+        <div class="performance-item">
+
+            <h3>
+                Real News Recall
+            </h3>
+
+            <p>
+                98%
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Confusion Matrix -->
+
+    <div class="confusion-matrix">
+
+        <h3>
+            Confusion Matrix
+        </h3>
+
+        <p>
+            The confusion matrix shows how the model classified
+            the 200 test articles compared with their actual labels.
+        </p>
+
+
+        <img
+            src="{{ url_for('static', filename='test_confusion_matrix.png') }}"
+            alt="Fake News Detection Confusion Matrix"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- Important Notice -->
+
+<section class="disclaimer">
+
+    <h2>
+        Important Notice
+    </h2>
+
+    <p>
+        This system uses machine learning to classify news articles
+        based on patterns learned from its training data. The prediction
+        does not independently verify the factual accuracy of the
+        information provided.
+    </p>
+
+</section>
+
+
+<!-- System Limitations -->
+
+<section class="limitations">
+
+    <h2>
+        System Limitations
+    </h2>
+
+
+    <ul>
+
+        <li>
+            The system classifies news based on patterns learned
+            from its training data.
+        </li>
+
+        <li>
+            The prediction does not independently verify the factual
+            accuracy of an article.
+        </li>
+
+        <li>
+            Performance may vary when the system encounters news styles
+            or topics that differ significantly from the training data.
+        </li>
+
+        <li>
+            The system requires sufficiently detailed text to produce
+            a meaningful prediction.
+        </li>
+
+    </ul>
+
+</section>
+
+
+<!-- Technology Stack -->
+
+<section class="technology-stack" id="technology">
+
+    <h2>
+        Technology Stack
+    </h2>
+
+
+    <div class="technology-details">
+
+        <div class="technology-item">
+
+            <h3>
+                Python
+            </h3>
+
+            <p>
+                Programming Language
+            </p>
+
+        </div>
+
+
+        <div class="technology-item">
+
+            <h3>
+                Flask
+            </h3>
+
+            <p>
+                Web Framework
+            </p>
+
+        </div>
+
+
+        <div class="technology-item">
+
+            <h3>
+                Scikit-learn
+            </h3>
+
+            <p>
+                Machine Learning
+            </p>
+
+        </div>
+
+
+        <div class="technology-item">
+
+            <h3>
+                Pandas
+            </h3>
+
+            <p>
+                Data Processing
+            </p>
+
+        </div>
+
+
+        <div class="technology-item">
+
+            <h3>
+                HTML / CSS / JS
+            </h3>
+
+            <p>
+                Frontend Development
+            </p>
+
+        </div>
+
+
+        <div class="technology-item">
+
+            <h3>
+                TF-IDF
+            </h3>
+
+            <p>
+                Text Feature Extraction
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Footer -->
+
+<footer>
+
+    <p>
+        Machine Learning-Based Fake News Detection System
+    </p>
+
+    <p>
+        Developed as a Final-Year Computer Science Project
+    </p>
+
+    <p>
+        © 2026
+    </p>
+
+</footer>
+
+<button id="backToTop" title="Back to top">
+    ↑
+</button>
+
+<!-- JavaScript -->
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>
